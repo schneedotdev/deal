@@ -1,0 +1,11 @@
+[package]
+name = "deal"
+version = "0.1.0"
+edition = "2021"
+description = "lightweight, flexible Rust crate for managing decks of cards. It provides a structured way to create, shuffle, and serve cards, making it easy to build card-based applications and games."
+license = "MIT"
+repository = "https://github.com/schneedotdev/deal"
+readme = "README.md"
+keywords = ["cards", "deck", "game"]
+
+[dependencies]
