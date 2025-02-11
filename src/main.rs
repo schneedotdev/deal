@@ -1,16 +1,21 @@
-use deck::Deck;
-
-mod card;
-mod deck;
-mod error;
+use deal::deck::Deck;
 
 fn main() {
     let mut deck = Deck::new();
     deck.shuffle();
 
-    let drawn = deck.draw();
-    match drawn {
-        Some(card) => println!("{card:?}"),
-        None => println!("Deck is empty."),
+    println!("Drawing card...");
+    if let Some(card) = deck.draw() {
+        println!("Drew the {:?}.", card);
+
+        println!("Discarding the {card:?}...");
+
+        if deck.discard(card).is_ok() {
+            println!("Card was discarded.");
+        } else {
+            println!("Failed to discard card.");
+        }
+    } else {
+        println!("Deck is empty.");
     }
 }

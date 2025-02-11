@@ -2,7 +2,9 @@
 // Build deck so that it can work with any Card type a user creates, so long as it
 // implements necessary traits.
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+use std::fmt::Debug;
+
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Card {
     value: Value,
     suit: Suit,
@@ -11,6 +13,12 @@ pub struct Card {
 impl Card {
     pub fn new(value: Value, suit: Suit) -> Self {
         Card { value, suit }
+    }
+}
+
+impl Debug for Card {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_fmt(format_args!("{:?} of {:?}s", self.value, self.suit))
     }
 }
 
