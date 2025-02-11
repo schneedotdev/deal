@@ -5,22 +5,24 @@ use crate::{
     error::DeckError,
 };
 
-pub enum State {
-    Shuffled,
-    Unshuffled,
-}
-
 pub enum Arrangement {
     BySuit,
     ByValue,
     Reverse,
 }
 
+impl Default for Arrangement {
+    fn default() -> Self {
+        Arrangement::BySuit
+    }
+}
+
 pub struct Deck {
     playable: Vec<Card>,
     dealt: Vec<Card>,
     discarded: Vec<Card>,
-    state: State,
+    arrangement: Arrangement,
+    is_shuffled: bool,
 }
 
 impl Deck {
@@ -31,7 +33,8 @@ impl Deck {
             playable: Vec::with_capacity(Self::DECK_SIZE),
             dealt: Vec::with_capacity(Self::DECK_SIZE),
             discarded: Vec::with_capacity(Self::DECK_SIZE),
-            state: State::Unshuffled,
+            arrangement: Arrangement::default(),
+            is_shuffled: false,
         };
 
         deck.arrange(Arrangement::BySuit);
@@ -40,7 +43,7 @@ impl Deck {
 
     pub fn shuffle(&mut self) {
         self.playable.shuffle(&mut rng());
-        self.state = State::Shuffled;
+        self.is_shuffled = true;
     }
 
     pub fn shuffle_discarded(&mut self) {
@@ -75,7 +78,7 @@ impl Deck {
         }
 
         self.playable = cards;
-        self.state = State::Unshuffled;
+        self.arrangement = arrangement;
     }
 
     pub fn draw(&mut self) -> Option<Card> {
@@ -104,5 +107,11 @@ impl Deck {
 
     pub fn size() -> usize {
         Self::DECK_SIZE
+    }
+}
+
+impl Default for Deck {
+    fn default() -> Self {
+        Self::new()
     }
 }
