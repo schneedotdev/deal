@@ -24,7 +24,7 @@ pub struct Deck {
 }
 
 impl Deck {
-    pub const DECK_SIZE: usize = 52;
+    const DECK_SIZE: usize = 52;
 
     pub fn new() -> Self {
         let mut deck = Deck {
@@ -100,5 +100,9 @@ impl Deck {
     // TODO: Discard a card that wasn't previously played
     pub fn discard_unplayed(&mut self, card: Card) {
         unimplemented!()
+    }
+
+    pub fn size() -> usize {
+        Self::DECK_SIZE
     }
 }

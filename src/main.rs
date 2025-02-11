@@ -4,6 +4,8 @@ fn main() {
     let mut deck = Deck::new();
     deck.shuffle();
 
+    println!("Starting game with a deck of {} cards...", Deck::size());
+
     println!("Drawing card...");
     if let Some(card) = deck.draw() {
         println!("Drew the {:?}.", card);
