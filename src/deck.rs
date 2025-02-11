@@ -113,9 +113,3 @@ impl Deck {
         Self::DECK_SIZE
     }
 }
-
-impl Default for Deck {
-    fn default() -> Self {
-        Self::new()
-    }
-}
