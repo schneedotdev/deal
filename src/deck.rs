@@ -13,7 +13,7 @@ pub enum State {
 pub enum Arrangement {
     BySuit,
     ByValue,
-    Reversed,
+    Reverse,
 }
 
 pub struct Deck {
@@ -65,7 +65,7 @@ impl Deck {
                     }
                 }
             }
-            Arrangement::Reversed => {
+            Arrangement::Reverse => {
                 for value in Value::ALL.iter().rev() {
                     for suit in Suit::ALL {
                         cards.push(Card::new(*value, suit));
