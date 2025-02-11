@@ -1,21 +1,20 @@
-#[derive(Debug, Clone, Copy)]
+// TODO: This file represents the default card format for a deck of playing cards.
+// Build deck so that it can work with any Card type a user creates, so long as it
+// implements necessary traits.
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Card {
     value: Value,
     suit: Suit,
-    discarded: bool,
 }
 
 impl Card {
     pub fn new(value: Value, suit: Suit) -> Self {
-        Card {
-            value,
-            suit,
-            discarded: false,
-        }
+        Card { value, suit }
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Suit {
     Club,
     Diamond,
@@ -27,10 +26,9 @@ impl Suit {
     pub const ALL: [Suit; 4] = [Suit::Club, Suit::Diamond, Suit::Heart, Suit::Spade];
 }
 
-#[derive(Debug, Clone, Copy)]
-#[repr(u8)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Value {
-    Ace = 1,
+    Ace,
     Two,
     Three,
     Four,

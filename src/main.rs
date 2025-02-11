@@ -1,6 +1,16 @@
+use deck::Deck;
+
 mod card;
 mod deck;
+mod error;
 
 fn main() {
-    println!("Hello from `deal`!");
+    let mut deck = Deck::new();
+    deck.shuffle();
+
+    let drawn = deck.draw();
+    match drawn {
+        Some(card) => println!("{card:?}"),
+        None => println!("Deck is empty."),
+    }
 }
